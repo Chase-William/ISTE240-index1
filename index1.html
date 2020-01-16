@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Landing Page</title>
+		<meta charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
+        <!-- Provides the hamburger icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="assets/js/jquery-3.4.1.js"></script>  <!-- loads the required JQuert Script -->
+        <script src="assets/js/dropdown.js"></script>      <!-- dropdown functionality -->
+	</head>
+	<body>
+		<header>
+			<h1>Chase Roth</h1>
+		</header>
+		<main>
+
+            <ul class="main-nav-container" id="topnav">
+                <li><span href="#" class="index">Assignments</span></li>
+                <li class="main-dropdown" id="testid"><a onclick="MainDropdownClicked(this)">Projects</a>
+                <!-- Sub level of "Front End Design" --> 
+                    <ul class="first-level-dropdown">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a>
+                        <ul class="deep-nest-sub-level-nav">
+                        <li><a href="#">Resets</a></li>
+                        <li><a href="#">Grids</a></li>
+                        <li><a href="#">Frameworks</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">JavaScript</a>
+                        <ul class="deep-nest-sub-level-nav">
+                        <li><a href="#">Ajax</a></li>
+                        <li><a href="#">jQuery</a></li>
+                        </ul>
+                    </li>
+                    </ul>
+                </li>
+                <li class="main-dropdown" id="testid2"><a href="#">Hardware</a></li>                    
+                <li class="main-dropdown"><a href="#">About</a>
+                <!-- Sub level of "WordPress Development" -->
+                    <ul class="first-level-dropdown">
+                    <li><a href="#">Themes</a></li>
+                    <li><a href="#">Plugins</a></li>
+                    <li><a href="#">Custom Post Types</a>
+                    <!-- Sub level of "Custom Post Types" which is a Sub of "Word Press Development" -->
+                        <ul class="deep-nest-sub-level-nav">
+                        <li><a href="#">Portfolios</a></li>
+                        <li><a href="#">Testimonials</a>
+                            <ul class="deep-nest-sub-level-nav">
+                                <li><a href="#">randa</a></li>
+                                <li><a href="#">mogaos</a></li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    <!-- Sub level of "WordPress Development" -->
+                    <li><a href="#">Options</a></li>
+                    </ul>
+                </li>
+                <a href="#" class="icon" onclick="HamburgerClicked()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </ul>            
+        </nav>
+
+            <!-- Picture of me -->
+            <img class="avatar" src="assets/images/avatar_300.jpg" alt="A picture of myself.">
+            
+			<h2 class="headers">About Me</h2>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+			
+			<p>
+				Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+			</p>
+			<ul>                
+				<li>Today's date: <!--#echo var="DATE_LOCAL"--></li>
+				<li>Last day modified: <!--#flastmod file="index.html"--></li>
+			</ul>
+        </main>
+        
+        <script>
+            // Handles hamburger menu item clicks.
+            // Displays all main dropdowns
+            function HamburgerClicked() {
+                // Getting references to elements
+                var mainNavContainer = document.getElementById("topnav");
+                var mainDropdown = document.querySelectorAll(".main-dropdown");
+
+                // Changes the nav's display to show all the dropdown options
+                if (mainNavContainer.className === "main-nav-container") {
+                    // Opens the hamburger menu when clicked
+                    mainNavContainer.className += " active";
+
+                    // Every instance of an element with the class title "main-dropdown" needs to become "main-dropdown .active"
+                    // Iterating through all dropdowns so that the user can click on the nested dropdowns next
+                    mainDropdown.forEach(function(element) {
+                        element.className += " active";
+                    });
+
+                    //console.log("Main Nav Container, class name: " + mainNavContainer.className);                     
+                }
+                // Changes the nav's dispaly back to the default by changing the classname
+                else {
+                    // Re-naming the dropdown to the original title; therefore all main dropdowns will close
+                    mainNavContainer.className = "main-nav-container";
+                    // Iterating through all dropdowns and assigning the new name
+                    mainDropdown.forEach(function(element) {
+                        element.className = "main-dropdown";
+                    });
+                    //console.log("Main Nav Container, class name: " + mainNavContainer.className);
+                }
+            }
+
+            // Handles main dropdowns clicks.
+            // Displays all dropdowns nested within that clicked main dropdown
+            function MainDropdownClicked(sender) {
+                sender.className += "active";
+            }
+        </script>
+
+		<footer>
+			<hr/>
+			<p>Web & Mobile II &mdash; Spring 2019 &mdash; Chase Roth &copy; 2020</p>
+		</footer>
+	</body>
+</html>
