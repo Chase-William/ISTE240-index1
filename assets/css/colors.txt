@@ -1,3 +1,4 @@
-PrimaryDark:   #181A1C
-SecondaryDark: #26282c
-Highlight:    #2e55a3
+PrimaryDark:        #181A1C
+SecondaryDark:      #26282c
+HighlightPrimary:   #2e55a3
+HighlightSecondary: #CF70FF;

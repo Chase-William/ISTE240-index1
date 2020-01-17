@@ -7,37 +7,60 @@ body {
     background: #181A1C;
     color: white;
 }
+/* avatar is the same circle design no matter the media screen query */
+.avatar {  
+    background-size: contain;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 50%;
+    background: #181A1C;
+    padding: 5px; 
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0.5, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.35);       
+}  
+/* Keeps ALL dropdowns closed by default - same logic applies to desktop media query */
+.first-level-dropdown {
+    display: none;
+}
+.main-dropdown li > a {
+    display: block;
+}
 
-/* Mobile - Hamburger INACTIVE*/
+
+/* line seperator after body and before footer */
+.custom-line {
+    margin: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #CF70FF;
+    border-radius: 50%;    
+}
+/* setting the footer styles */
+footer p {
+    text-align: center;
+}
+.email {
+    display: inline;
+}
+
+
+/* Mobile */
 @media screen and (max-width: 900px) {
 
     h1 {
         font: 700;
         text-align: center;
     }
-
-    .avatar {  
-        background-size: contain;
-        width: 100%;
-        height: auto;
-        max-width: 300px;
-        display: block;
-        margin: 20px auto;
-        border-radius: 50%;
-        background: #181A1C;
-        padding: 5px; 
-        box-shadow: 0 4px 10px 0 rgba(0, 0, 0.5, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.35);       
-    }    
-
     /* Main navigation styles */
-    ul {
+    nav ul {
         list-style: none;
         padding: 0;                
         background: #26282c;           
         margin: 0 auto;        
     }
-
-    /* .index && ul li a == follow the same styles */
+    /* nav title bar */
     .nav-header {
         display: block;
         padding: 1em;
@@ -45,62 +68,46 @@ body {
         white-space: nowrap;
         color: #fff;
     }
-
-    .test {
-        height: 25px;
-        text-align: center;
-    }    
-
-    .first-level-dropdown.active {
-        display: inline-block;
-    }
-    
+    /* helps position the hamburger icon */
     .main-nav-container {
         background-color: #26282c;
         position: relative;
     } 
-    
     /* Generic styles for all anchor tags inside the main-nav-container */
     .main-nav-container a {
         display: inline-block;
         color: white;        
         text-decoration: none;
     }
-    /* Keeps ALL dropdowns closed by default && sets other settings */
-    .main-dropdown, .first-level-dropdown {
+    /* main drop-downs are hidden in mobile view, so are first-level-dropdowns down but it is defined above
+        because the desktop media query uses it as well */
+    .main-dropdown {
         display: none;
     }
     /* Independent styles for .main-dropdown a elements using > selector */
     .main-dropdown > a {
         padding: 14px;
+        display: block;
     }
     /* Independent styles for anchor tags after first-level-dropdown li */
-    .first-level-dropdown > li a {
-        margin-left: 12px;
-        padding: 8px;
+    .first-level-dropdown li > a {   
+        /* If we dont use padding and there is a gap between the buttons; clicking there will result in the next element
+            becoming hidden from view */     
+        padding: 8px 8px 8px 25px;
+        display: block;
     }
     /* Change the color of links on hover */
     .main-nav-container a:hover {
         background-color: #2e55a3;
     }
-    /* .main-nav-container a {
-        display: inline-block;
-        color: white;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-    } */
-
     /* Provides some padding for our text */
     .main-text-container {
         padding: 10px;
     }
-
     /* Puts the following anchor elements below the div above so they are lost behind them */
     #anchor-need-offset {
         margin-top: 47px;
     }
-
     /* Styling for hamburger icon */
     .main-nav-container .icon {
         position: absolute;
@@ -109,10 +116,7 @@ body {
         padding: 16px 16px;
         color: white;
     }
-
-    /* 
-        Updates hamburger menu icon settings
-    */
+    /* updates the hamerburger icon when clicked */
     .main-nav-container.active a:not(:first-child) { display: block; }
     .main-nav-container.active { position: relative; }
     .main-dropdown.active {
@@ -121,25 +125,70 @@ body {
         width: 100%;
         display: block;
     }
-
     /* Makes the anchor take up the entire width */
     .main-nav-container.active a {
         float: none;
         display: block;
         text-align: left;
-    }
-
-    /* line seperator after body and before footer */
-    .custom-line {
-        margin: 10px;
-        border-style: solid;
-        border-width: 1px;
-        border-color: #CF70FF;
-        border-radius: 50%;
-    }
-
-    footer p {
-        text-align: center;
-    }
+    }    
 }
 
+/* Desktop */
+@media screen and (min-width: 901px) {
+
+    /* reducing the size of the body and centering it */
+    body {
+        width: 75%;
+        margin: 0 auto;
+        max-width: 1000px;
+    }    
+    /* defining the area for the main content (excludes the navigation) */
+    main {
+        width: 65%;
+        float: left;
+    }
+    /* Controls the width of the nav within the main-container */
+    nav {
+        float: left;    
+        width: 30%;
+        /* adds some spacing between our content and navigation */
+        margin-right: 5%; 
+        height: auto;   
+    }
+    .main-dropdown > a {
+        padding: 15px;
+        display: block;
+    }
+    /* header for the navigation (Assignments) */
+    .nav-header {
+        font-size: x-large;
+    }
+    /* the main-nav-container will fill the nav */
+    .main-nav-container {    
+        width: 100%;
+        padding: 10px;
+    }
+    /* Hiding hamburger icon */
+    .main-nav-container .icon {
+        display: none;
+    }
+    .first-level-dropdown a {
+        padding: 10px;
+        /* display block will make our element act as a block -important- */ 
+        display: block;     
+    }
+    .first-level-dropdown > li a:hover { text-decoration: underline; }
+    /* setting all anchors to none styles by default */
+    a {
+        padding-left: 5%;
+        list-style-type: none;
+        color: white;
+        text-decoration: none;
+    }
+    /* Main navigation styles */
+    nav ul {
+        list-style: none;  
+        padding-left: 10px;                   
+        background: #26282c;    
+    }   
+}
