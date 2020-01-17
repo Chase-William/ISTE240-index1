@@ -8,103 +8,92 @@ body {
     color: white;
 }
 
-h1 {
-    font: 700;
-}
-
-.avatar {  
-    background-size: contain;
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    display: block;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 50%;
-    background: #181A1C;
-    padding: 5px; 
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0.5, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.35);       
-}
-
-/* Main navigation styles */
-ul {
-    list-style: none;
-    padding: 0;                
-    background: #26282c;           
-    margin: 0 auto;
-}
-
-/* .index && ul li a == follow the same styles */
-.index {
-    display: block;
-    padding: 1em;
-    text-decoration: none;
-    white-space: nowrap;
-    color: #fff;
-}
-ul li a {
-    display: block;
-    padding: 1em;
-    text-decoration: none;
-    white-space: nowrap;
-    color: #fff;
-}
-
-/* Keeps ALL dropdowns closed by default */
-.main-dropdown,
-.main-dropdown > .first-level-dropdown {
-    float: left;
-    background-color: #26282c;
-    width: 100%;
-    display: none;
-}
-
-.first-level-dropdown.active {
-    display: inline-block;
-}
-
 /* Mobile - Hamburger INACTIVE*/
-@media screen and (max-width: 600px) {
-    /* nav ul {
-        margin: 0 auto;
-        padding: 0;
-        width: 75%;
-        border: 1px solid #2e55a3;
-        max-height: 47px;
-    } */    
+@media screen and (max-width: 900px) {
 
+    h1 {
+        font: 700;
+        text-align: center;
+    }
+
+    .avatar {  
+        background-size: contain;
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+        display: block;
+        margin: 20px auto;
+        border-radius: 50%;
+        background: #181A1C;
+        padding: 5px; 
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0.5, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.35);       
+    }    
+
+    /* Main navigation styles */
+    ul {
+        list-style: none;
+        padding: 0;                
+        background: #26282c;           
+        margin: 0 auto;        
+    }
+
+    /* .index && ul li a == follow the same styles */
+    .nav-header {
+        display: block;
+        padding: 1em;
+        text-decoration: none;
+        white-space: nowrap;
+        color: #fff;
+    }
+
+    .test {
+        height: 25px;
+        text-align: center;
+    }    
+
+    .first-level-dropdown.active {
+        display: inline-block;
+    }
+    
     .main-nav-container {
         background-color: #26282c;
         position: relative;
     } 
-
+    
+    /* Generic styles for all anchor tags inside the main-nav-container */
     .main-nav-container a {
+        display: inline-block;
+        color: white;        
+        text-decoration: none;
+    }
+    /* Keeps ALL dropdowns closed by default && sets other settings */
+    .main-dropdown, .first-level-dropdown {
+        display: none;
+    }
+    /* Independent styles for .main-dropdown a elements using > selector */
+    .main-dropdown > a {
+        padding: 14px;
+    }
+    /* Independent styles for anchor tags after first-level-dropdown li */
+    .first-level-dropdown > li a {
+        margin-left: 12px;
+        padding: 8px;
+    }
+    /* Change the color of links on hover */
+    .main-nav-container a:hover {
+        background-color: #2e55a3;
+    }
+    /* .main-nav-container a {
         display: inline-block;
         color: white;
         padding: 14px 16px;
         text-decoration: none;
         font-size: 17px;
-    }
+    } */
 
-    /* Change the color of links on hover */
-    .main-nav-container a:hover {
-        background-color: #2e55a3;
-    }
-
-    /* Add an active class to highlight the current page */
-    .main-nav-container a.active {
-        background-color: #26282c;
-    }
-
-
-    /* Hide the content until proper method called to display */
-    .dropdown-content {
-        display: none;
-    }
-
-    .dropdown-content.active {
-        display: block;
+    /* Provides some padding for our text */
+    .main-text-container {
+        padding: 10px;
     }
 
     /* Puts the following anchor elements below the div above so they are lost behind them */
@@ -112,27 +101,20 @@ ul li a {
         margin-top: 47px;
     }
 
+    /* Styling for hamburger icon */
     .main-nav-container .icon {
         position: absolute;
         right: 0;
         top: 0;
+        padding: 16px 16px;
+        color: white;
     }
 
     /* 
-        Mobile - Hamburger ACTIVE
-
-        Controls the displaying of anchors tags when in mobile view. 
-        When the hamburger menu icon is clicked javascipt will change the "main-nav-container" to "main-nav-container.active".
-        Which triggers the code below to display our first sub level anchor tags vertically.
+        Updates hamburger menu icon settings
     */
     .main-nav-container.active a:not(:first-child) { display: block; }
     .main-nav-container.active { position: relative; }
-    /* .main-nav-container.active a.icon {
-        position: absolute;
-        right: 0;
-        top: 0;
-    } */
-
     .main-dropdown.active {
         float: left;
         background-color: #26282c;
@@ -140,11 +122,24 @@ ul li a {
         display: block;
     }
 
-    /* Tells all anchors to now display vertically to the left */
+    /* Makes the anchor take up the entire width */
     .main-nav-container.active a {
         float: none;
         display: block;
         text-align: left;
+    }
+
+    /* line seperator after body and before footer */
+    .custom-line {
+        margin: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #CF70FF;
+        border-radius: 50%;
+    }
+
+    footer p {
+        text-align: center;
     }
 }
 

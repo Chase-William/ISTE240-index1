@@ -1,3 +1,3 @@
 PrimaryDark:   #181A1C
 SecondaryDark: #26282c
-HightLight:    #2e55a3
+Highlight:    #2e55a3

@@ -1,67 +1,65 @@
 // Subscribing the verticalOffset method to the onscroll event from window
 // When user scrolls the following event will be raised yay! kill mee
-window.onscroll = function() { verticalOffset() };
-
-// Handles the highest level of the dropdown being displayed
-function displayMainDropdown() {    
-    let mainNavContainer = document.getElementById("topnav");
-    let x = document.querySelectorAll(".main-dropdown");
-
-    // Changes the nav's display to show all the dropdown options
-    if (mainNavContainer.className === "nav-ul-container") {
-        // Opens the hamburger menu when clicked
-        mainNavContainer.className += " active";
-
-        x.forEach(function(element) {
-            element.className += " active";
-        });
-        //console.log("Main Nav Container, class name: " + mainNavContainer.className);                     
-    }
-    // Changes the nav's dispaly back to the default by changing the classname
-    else {
-        mainNavContainer.className = "nav-ul-container";
-         x.forEach(function(element) {
-            element.className = "main-dropdown";
-        });
-        //console.log("Main Nav Container, class name: " + mainNavContainer.className);
-    }
-}
-
-// Controls the left-vertical-nav movement when scrolling
-function verticalOffset()
-{    
-    let x = document.getElementById("nav-container");                                
-    // console.log("x.style.top - was assigned a value of: " + x.style.top);
-    // console.log("window.pageXOffset - was assigned a value of: " + window.pageYOffset);
-
-    // Check to prevent nav from going negative (so high up we cant see it as we scroll down)
-    if (window.pageYOffset < 152){                         
-        // IMPORTANT - need to have the "px" otherwise dumb thing won't assign unless 0
-        x.style.top = (152 - window.pageYOffset + "px");        
-    }
-}
+// window.onscroll = function() { verticalOffset() };
 
 // .ready is called as soon as the page (DOM) is ready and safe to maniplute
 // https://api.jquery.com/ready/
 // Here we attach event handlers to elements we are interacting with 
 $(document).ready(function() {
 
-    // When spans nested within the nav are clicked -- TODO: FIX THIS ---------------------------------------
-    $("nav span").click(function(event){ 
-        // Check the first child element of the object sender 
-        if ($(this).children().is(":visible"))  { 
-            $(this).children().hide(); // Hide the child ul
-            $(this).prev().attr("class", "nav-arrow");
-        } else { // Runs if the child element of object sender "ul" is hidden   
-            $(this).children().show(); // Show the child ul
-            $(this).prev().attr("class", "nav-arrow active");            
-        }        
-        // Stops event bubbling, or traveling up the element hierarchy
-        event.stopPropagation();    
-        console.log($(this).prev().attr("class"));
-        // First we are get the attribute 'class' which displays its className
-        // Then we append the same objects
-        //https://api.jquery.com/visible-selector/
-        console.log($(this).attr('class') + " visibility property is: " + $(this).children().is(":visible"));
-    });    
+    // Binding event handler for the main dropdowns' click event
+    $(".main-dropdown").click(ToggleFirstLevelDropdowns);   
+    $(".icon").click(HamburgerClicked);
 });
+
+
+///
+/// Handler for hamburger icon that toggles the display states of the main dropdowns
+///
+function HamburgerClicked() {
+    // Getting references to elements
+    var mainNavContainer = document.getElementById("topnav");
+    var mainDropdown = document.querySelectorAll(".main-dropdown");
+
+    // Changes the nav's display to show all the dropdown options
+    if (mainNavContainer.className === "main-nav-container") {
+        // Opens the hamburger menu when clicked
+        mainNavContainer.className += " active";
+
+        // Every instance of an element with the class title "main-dropdown" needs to become "main-dropdown .active"
+        // Iterating through all dropdowns so that the user can click on the nested dropdowns next
+        mainDropdown.forEach(function(element) {
+            element.className += " active";
+        });
+
+        //console.log("Main Nav Container, class name: " + mainNavContainer.className);                     
+    }
+    // Changes the nav's dispaly back to the default by changing the classname
+    else {
+        // Re-naming the dropdown to the original title; therefore all main dropdowns will close
+        mainNavContainer.className = "main-nav-container";
+        // Iterating through all dropdowns and assigning the new name
+        mainDropdown.forEach(function(element) {
+            element.className = "main-dropdown";
+        });
+        //console.log("Main Nav Container, class name: " + mainNavContainer.className);
+    }
+}
+
+///
+/// Handler for main dropdowns that toggle the display states of the first level dropdowns
+/// 
+function ToggleFirstLevelDropdowns(event){
+    // Getting the "sender" from the click event and then traversing the DOM on element down to our UL
+    // Once a reference to the UL is made we set it to display its contents (bunch of il)
+    let ul = event.target.nextElementSibling;
+
+    // When display is none, switch to block
+    if ($(ul).css("display") === "none") {
+        $(ul).css("display", "block");
+    }      
+    // When display block, switch to none 
+    else {
+        $(ul).css("display", "none");
+    }    
+}
