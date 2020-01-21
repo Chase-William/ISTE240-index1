@@ -1,7 +1,7 @@
 /* Styles are for mobile view */
 body {
     /* This font style is from microsoft's documentation pages <I love text style> */
-    font-family: Segoe UI,SegoeUI,S,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-family: 'Segoe UI','SegoeUI','S','Helvetica Neue','Helvetica','Tahoma,Arial','sans-serif';
     font-weight: 400;
     text-rendering: optimizeLegibility; 
     background: #181A1C;
@@ -44,14 +44,18 @@ footer p {
 .email {
     display: inline;
 }
-
+h4 {
+    font-size: x-large;
+}
 
 /* Mobile */
 @media screen and (max-width: 900px) {
 
-    h1 {
-        font: 700;
+    h1, h2, h3 {
         text-align: center;
+    }
+    h3 {
+        font-size: xx-large;
     }
     /* Main navigation styles */
     nav ul {
@@ -146,6 +150,10 @@ footer p {
     main {
         width: 65%;
         float: left;
+    }
+    h3 {
+        text-align: center;
+        font-size: xx-large;
     }
     /* Controls the width of the nav within the main-container */
     nav {
